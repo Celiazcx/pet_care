@@ -5,3 +5,5 @@ kiwi
 durin
 another fruit
 in my branch
+cat
+dog
