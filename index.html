@@ -1575,15 +1575,30 @@
                 <input type="date" name="date" required>
               </label>
               <label>
-                到店时间
-                <select name="time" required>
-                  <option value="">请选择</option>
-                  <option>10:00-12:00</option>
-                  <option>12:00-14:00</option>
-                  <option>14:00-16:00</option>
-                  <option>16:00-18:00</option>
-                  <option>18:00-20:00</option>
-                </select>
+                期望到店时间
+                <input type="time" name="arrivalTime" min="10:00" max="19:30" step="900" list="arrivalTimeOptions" required>
+                <datalist id="arrivalTimeOptions">
+                  <option value="10:00">
+                  <option value="10:30">
+                  <option value="11:00">
+                  <option value="11:30">
+                  <option value="12:00">
+                  <option value="12:30">
+                  <option value="13:00">
+                  <option value="13:30">
+                  <option value="14:00">
+                  <option value="14:30">
+                  <option value="15:00">
+                  <option value="15:30">
+                  <option value="16:00">
+                  <option value="16:30">
+                  <option value="17:00">
+                  <option value="17:30">
+                  <option value="18:00">
+                  <option value="18:30">
+                  <option value="19:00">
+                  <option value="19:30">
+                </datalist>
               </label>
             </div>
             <label>
@@ -1735,7 +1750,10 @@
       const data = new FormData(bookingForm);
       const pet = data.get("pet") || "宠物";
       const selectedPackage = data.get("package") || "护理";
-      formMessage.textContent = `已收到 ${pet} 的${selectedPackage}预约，我们会尽快联系你确认档期。`;
+      const date = data.get("date");
+      const arrivalTime = data.get("arrivalTime");
+      const visitTime = date && arrivalTime ? `，期望 ${date} ${arrivalTime} 到店` : "";
+      formMessage.textContent = `已收到 ${pet} 的${selectedPackage}预约${visitTime}，我们会尽快联系你确认档期。`;
       formMessage.classList.add("show");
       bookingForm.reset();
       const defaultPackage = bookingForm.querySelector('input[name="package"][value="基础洗护"]');
