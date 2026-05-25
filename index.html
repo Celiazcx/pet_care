@@ -1566,6 +1566,19 @@
           </div>
 
           <form class="booking-form" id="bookingForm">
+            <fieldset>
+              <legend>之前是否来过本店？</legend>
+              <div class="visit-options">
+                <label class="visit-option">
+                  <input type="radio" name="visitedBefore" value="来过本店" required>
+                  <span>来过</span>
+                </label>
+                <label class="visit-option">
+                  <input type="radio" name="visitedBefore" value="首次到店" required>
+                  <span>第一次来</span>
+                </label>
+              </div>
+            </fieldset>
             <div class="field-grid">
               <label>
                 预约日期
@@ -1624,19 +1637,6 @@
                 </select>
               </label>
             </div>
-            <fieldset>
-              <legend>之前是否来过本店？</legend>
-              <div class="visit-options">
-                <label class="visit-option">
-                  <input type="radio" name="visitedBefore" value="来过本店" required>
-                  <span>来过</span>
-                </label>
-                <label class="visit-option">
-                  <input type="radio" name="visitedBefore" value="首次到店" required>
-                  <span>第一次来</span>
-                </label>
-              </div>
-            </fieldset>
             <label>
               护理套餐
               <div class="package-options" role="radiogroup" aria-label="护理套餐">
