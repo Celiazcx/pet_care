@@ -744,6 +744,20 @@
       font-weight: 850;
     }
 
+    .booking-form fieldset {
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      border: 0;
+    }
+
+    .booking-form legend {
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
     input,
     select,
     textarea {
@@ -777,10 +791,19 @@
       gap: 10px;
     }
 
-    .package-option {
-      position: relative;
+    .visit-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
+    .visit-option,
+    .package-option {
+      position: relative;
+      display: block;
+    }
+
+    .visit-option input,
     .package-option input {
       position: absolute;
       inset: 0;
@@ -788,9 +811,9 @@
       cursor: pointer;
     }
 
+    .visit-option span,
     .package-option span {
       display: grid;
-      min-height: 76px;
       place-content: center;
       gap: 3px;
       padding: 12px;
@@ -800,6 +823,14 @@
       color: var(--muted);
       background: #fbfefd;
       transition: border-color .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+    }
+
+    .visit-option span {
+      min-height: 54px;
+    }
+
+    .package-option span {
+      min-height: 76px;
     }
 
     .package-option strong {
@@ -812,6 +843,14 @@
       font-weight: 800;
     }
 
+    .visit-option input:focus-visible + span,
+    .package-option input:focus-visible + span {
+      border-color: var(--mint);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(49, 185, 144, .14);
+    }
+
+    .visit-option input:checked + span,
     .package-option input:checked + span {
       border-color: var(--mint);
       color: var(--mint-dark);
@@ -1157,6 +1196,7 @@
       .service-grid,
       .steps,
       .field-grid,
+      .visit-options,
       .package-options {
         grid-template-columns: 1fr;
       }
@@ -1528,49 +1568,6 @@
           <form class="booking-form" id="bookingForm">
             <div class="field-grid">
               <label>
-                家长姓名
-                <input type="text" name="owner" autocomplete="name" placeholder="例如：陈小姐" required>
-              </label>
-              <label>
-                联系电话
-                <input type="tel" name="phone" autocomplete="tel" placeholder="用于确认预约" required>
-              </label>
-            </div>
-            <div class="field-grid">
-              <label>
-                宠物昵称
-                <input type="text" name="pet" placeholder="例如：糯米" required>
-              </label>
-              <label>
-                宠物类型
-                <select name="type" required>
-                  <option value="">请选择</option>
-                  <option>小型犬</option>
-                  <option>中型犬</option>
-                  <option>大型犬</option>
-                  <option>猫咪</option>
-                </select>
-              </label>
-            </div>
-            <label>
-              护理套餐
-              <div class="package-options" role="radiogroup" aria-label="护理套餐">
-                <label class="package-option">
-                  <input type="radio" name="package" value="基础洗护" checked>
-                  <span><strong>基础洗护</strong><small>日常清洁</small></span>
-                </label>
-                <label class="package-option">
-                  <input type="radio" name="package" value="精修造型">
-                  <span><strong>精修造型</strong><small>剪毛修型</small></span>
-                </label>
-                <label class="package-option">
-                  <input type="radio" name="package" value="皮毛护理">
-                  <span><strong>皮毛护理</strong><small>舒缓修护</small></span>
-                </label>
-              </div>
-            </label>
-            <div class="field-grid">
-              <label>
                 预约日期
                 <input type="date" name="date" required>
               </label>
@@ -1601,6 +1598,62 @@
                 </datalist>
               </label>
             </div>
+            <div class="field-grid">
+              <label>
+                家长姓名
+                <input type="text" name="owner" autocomplete="name" placeholder="例如：陈小姐" required>
+              </label>
+              <label>
+                联系电话
+                <input type="tel" name="phone" autocomplete="tel" placeholder="用于确认预约" required>
+              </label>
+            </div>
+            <div class="field-grid">
+              <label>
+                宠物昵称
+                <input type="text" name="pet" placeholder="例如：糯米" required>
+              </label>
+              <label>
+                宠物类型
+                <select name="type" required>
+                  <option value="">请选择</option>
+                  <option>小型犬</option>
+                  <option>中型犬</option>
+                  <option>大型犬</option>
+                  <option>猫咪</option>
+                </select>
+              </label>
+            </div>
+            <fieldset>
+              <legend>之前是否来过本店？</legend>
+              <div class="visit-options">
+                <label class="visit-option">
+                  <input type="radio" name="visitedBefore" value="来过本店" required>
+                  <span>来过</span>
+                </label>
+                <label class="visit-option">
+                  <input type="radio" name="visitedBefore" value="首次到店" required>
+                  <span>第一次来</span>
+                </label>
+              </div>
+            </fieldset>
+            <label>
+              护理套餐
+              <div class="package-options" role="radiogroup" aria-label="护理套餐">
+                <label class="package-option">
+                  <input type="radio" name="package" value="基础洗护" checked>
+                  <span><strong>基础洗护</strong><small>日常清洁</small></span>
+                </label>
+                <label class="package-option">
+                  <input type="radio" name="package" value="精修造型">
+                  <span><strong>精修造型</strong><small>剪毛修型</small></span>
+                </label>
+                <label class="package-option">
+                  <input type="radio" name="package" value="皮毛护理">
+                  <span><strong>皮毛护理</strong><small>舒缓修护</small></span>
+                </label>
+              </div>
+            </label>
             <label>
               备注
               <textarea name="note" placeholder="例如：怕吹风、毛结多、需要药浴等"></textarea>
@@ -1750,10 +1803,12 @@
       const data = new FormData(bookingForm);
       const pet = data.get("pet") || "宠物";
       const selectedPackage = data.get("package") || "护理";
+      const visitedBefore = data.get("visitedBefore");
       const date = data.get("date");
       const arrivalTime = data.get("arrivalTime");
+      const visitStatus = visitedBefore ? `，${visitedBefore}` : "";
       const visitTime = date && arrivalTime ? `，期望 ${date} ${arrivalTime} 到店` : "";
-      formMessage.textContent = `已收到 ${pet} 的${selectedPackage}预约${visitTime}，我们会尽快联系你确认档期。`;
+      formMessage.textContent = `已收到 ${pet} 的${selectedPackage}预约${visitStatus}${visitTime}，我们会尽快联系你确认档期。`;
       formMessage.classList.add("show");
       bookingForm.reset();
       const defaultPackage = bookingForm.querySelector('input[name="package"][value="基础洗护"]');
